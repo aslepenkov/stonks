@@ -117,7 +117,7 @@ function updateHISTORYtab(tab) {
       "", //W empty
       "", //X empty
       "=Y3+FLOW!AA2", //Y SPENT USD
-      "==ROUND(SUM(AB2:AX2),0)", //Z BALANCE USD
+      "=ROUND(SUM(AB2:AX2),0)", //Z BALANCE USD
       "", //AA DATE
       "=B2*CURRENCY!B2", //AB USDT value
       "=C2*CURRENCY!B2", //AC TON $ value
