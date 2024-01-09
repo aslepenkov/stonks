@@ -20,7 +20,8 @@ function debugServices() {
   const functions = Object.getOwnPropertyNames(this)
     .filter(name =>
       typeof this[name] === 'function' &&
-      (name.includes('parse') || name.includes('fetch'))
+      (name.includes('Parse') || name.includes('Fetch')) &&
+      (name.includes('service') )
     )
 
   functions.forEach(funcName => {
@@ -29,7 +30,7 @@ function debugServices() {
   });
 }
 
-function fetchTonShitCoinsPrices() {
+function serviceFetchTonShitCoinsPrices() {
   try {
     const headers = {
       'Authorization': 'Bearer ' + TONAPI_API_TOKEN
