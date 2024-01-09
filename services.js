@@ -26,7 +26,7 @@ function debugServices() {
 
   functions.forEach(funcName => {
     const result = this[funcName]();
-    console.log(`${funcName}: `, result);
+    Logger.log(`${funcName}: `, result);
   });
 }
 
