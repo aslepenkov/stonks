@@ -44,12 +44,12 @@ function updateCURRENCYtab(tab) {
   tab.insertRowAfter(1);
 
   //add values
-  const tonPrice = fetchTonPrice();
-  const btcPrice = fetchBTCPrice();
-  const ethPrice = fetchETHPrice();
-  const dogePrice = fetchDogePrice();
-  const tanPrice = parseTANPrice();
-  const shitCoinsPrices = fetchTonShitCoinsPrices();
+  const tonPrice = serviceFetchTonPrice();
+  const btcPrice = serviceFetchBTCPrice();
+  const ethPrice = serviceFetchETHPrice();
+  const dogePrice = serviceFetchDogePrice();
+  const shitCoinsPrices = serviceFetchTonShitCoinsPrices();
+  const tanPrice = serviceParseTANPrice();
 
   tab.getRange("A2:T2").setValues([
     [
