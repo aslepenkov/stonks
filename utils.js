@@ -1,3 +1,5 @@
+TONAPI_API_TOKEN = PropertiesService.getScriptProperties().getProperty("TONAPI_API_TOKEN");
+
 TOKENS = [
   'EQCcLAW537KnRg_aSPrnQJoyYjOZkzqYp6FVmRUvN1crSazV', //AMBRA
   'EQCBdxpECfEPH2wUxi1a6QiOkSf-5qDjUWqLCUuKtD-GLINT', //GLINT
