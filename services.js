@@ -1,7 +1,8 @@
-TONAPI_API_TOKEN =
+const TONAPI_API_TOKEN =
   PropertiesService.getScriptProperties().getProperty("TONAPI_API_TOKEN");
-
-TOKENS = [
+const TON_ADDRESS =
+  PropertiesService.getScriptProperties().getProperty("TON_ADDRESS");
+const TOKENS = [
   "EQCcLAW537KnRg_aSPrnQJoyYjOZkzqYp6FVmRUvN1crSazV", //AMBRA
   "EQCBdxpECfEPH2wUxi1a6QiOkSf-5qDjUWqLCUuKtD-GLINT", //GLINT
   "EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon", //JETTON
@@ -21,7 +22,9 @@ function debugServices() {
   const functions = Object.getOwnPropertyNames(this).filter(
     (name) =>
       typeof this[name] === "function" &&
-      (name.includes("parse") || name.includes("fetch"))
+      (name.toLowerCase().includes("parse") ||
+        name.toLowerCase().includes("fetch")) &&
+      name.startsWith("service")
   );
 
   functions.forEach((funcName) => {
@@ -30,7 +33,7 @@ function debugServices() {
   });
 }
 
-function fetchTonShitCoinsPrices() {
+function serviceFetchTonShitCoinsPrices() {
   try {
     const headers = {
       Authorization: "Bearer " + TONAPI_API_TOKEN,
@@ -53,7 +56,7 @@ function fetchTonShitCoinsPrices() {
   }
 }
 
-function fetchTonPrice() {
+function serviceFetchTonPrice() {
   try {
     const response = UrlFetchApp.fetch(
       "https://tonapi.io/v2/rates?tokens=ton&currencies=usd"
@@ -67,7 +70,7 @@ function fetchTonPrice() {
   }
 }
 
-function fetchETHPrice() {
+function serviceFetchETHPrice() {
   try {
     const response = UrlFetchApp.fetch("https://cryptoprices.cc/ETH/");
     const usdPrice = response;
@@ -78,7 +81,7 @@ function fetchETHPrice() {
   }
 }
 
-function fetchDogePrice() {
+function serviceFetchDogePrice() {
   try {
     const response = UrlFetchApp.fetch("https://cryptoprices.cc/DOGE/");
     const usdPrice = response;
@@ -89,7 +92,7 @@ function fetchDogePrice() {
   }
 }
 
-function fetchBTCPrice() {
+function serviceFetchBTCPrice() {
   try {
     const response = UrlFetchApp.fetch(
       "https://api.coindesk.com/v1/bpi/currentprice.json"
@@ -103,7 +106,7 @@ function fetchBTCPrice() {
   }
 }
 
-function parseTANPrice() {
+function serviceParseTANPrice() {
   try {
     const url = "https://ton.diamonds/collection/anonymous-telegram-numbers";
     const html = UrlFetchApp.fetch(url).getContentText();
@@ -117,7 +120,7 @@ function parseTANPrice() {
   }
 }
 
-function fetchTonShitCoinsPrices() {
+function serviceFetchTonShitCoinsPrices() {
   try {
     const headers = {
       Authorization: "Bearer " + TONAPI_API_TOKEN,
@@ -140,7 +143,7 @@ function fetchTonShitCoinsPrices() {
   }
 }
 
-function parseTonViewerShitCoinsValues() {
+function serviceParseTonViewerShitCoinsValues() {
   try {
     const url = `https://tonviewer.com/${TON_ADDRESS}?section=tokens`;
     let html = UrlFetchApp.fetch(url).getContentText();
