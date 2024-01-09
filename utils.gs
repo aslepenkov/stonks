@@ -26,3 +26,26 @@ function debugServices() {
     console.log(`${funcName}: `, result);
   });
 }
+
+function fetchTonShitCoinsPrices() {
+  try {
+    const headers = {
+      'Authorization': 'Bearer ' + TONAPI_API_TOKEN
+    };
+
+    const options = {
+      'headers': headers
+    };
+
+    const tokensQueryParam = TOKENS.join('%2C');
+    const apiUrl = `https://tonapi.io/v2/rates?tokens=${tokensQueryParam}&currencies=usd`;
+    const response = UrlFetchApp.fetch(apiUrl, options);
+    const content = JSON.parse(response.getContentText());
+
+    const usdPrices = TOKENS.map(token => content.rates[token].prices.USD);
+    //console.log(usdPrices)
+    return usdPrices
+  } catch (error) {
+    return Array(TOKENS.length).fill(0)
+  }
+}
