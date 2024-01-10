@@ -13,16 +13,17 @@ function serviceFetchTonShitCoinsPrices() {
       headers: headers,
     };
 
-    const tokensQueryParam = TOKENS.join("%2C");
+    const tokens = getJettonsList();
+    const tokensQueryParam = tokens.join("%2C");
     const apiUrl = `https://tonapi.io/v2/rates?tokens=${tokensQueryParam}&currencies=usd`;
     const response = UrlFetchApp.fetch(apiUrl, options);
     const content = JSON.parse(response.getContentText());
 
-    const usdPrices = TOKENS.map((token) => content.rates[token].prices.USD);
+    const usdPrices = tokens.map((token) => content.rates[token].prices.USD);
     //console.log(usdPrices)
     return usdPrices;
   } catch (error) {
-    return Array(TOKENS.length).fill(0);
+    return Array(tokens.length).fill(0);
   }
 }
 
