@@ -13,6 +13,9 @@ function getJettonsList() {
     "EQBlqsm144Dq6SjbPI4jjZvA1hqTIP3CvHovbIfW_t-SCALE", //SCALE
     "EQAM2KWDp9lN0YvxvfSbI0ryjBXwM70rakpNIHbuETatRWA1", //ARBUZ
     "EQDNDv54v_TEU5t26rFykylsdPQsv5nsSZaH_v7JSJPtMitv", //TONNEL
+    "EQD26zcd6Cqpz7WyLKVH8x_cD6D7tBrom6hKcycv8L8hV0GP", //DFC
+    //LP dedust 
+    //NEW TOKEN HERE
   ];
 
   return TOKENS;

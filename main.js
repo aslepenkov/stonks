@@ -27,7 +27,7 @@ function updateCURRENCYtab(tab) {
   const shitCoinsPrices = serviceFetchTonShitCoinsPrices();
   const tanPrice = serviceParseTANPrice();
 
-  tab.getRange("A2:T2").setValues([
+  tab.getRange("A2:V2").setValues([
     [
       formatDate(new Date()),
       1, //USDT
@@ -49,6 +49,8 @@ function updateCURRENCYtab(tab) {
       shitCoinsPrices[10], //SCALE
       shitCoinsPrices[11], //ARBUZ
       shitCoinsPrices[12], //TONNEL
+      shitCoinsPrices[13], //DFC
+      1, //LP dedust
     ],
   ]);
 }
@@ -64,10 +66,9 @@ function updateFLOWtab(tab) {
 function updateHISTORYtab(tab) {
   //add new row
   tab.insertRowAfter(1);
-  //const shitCoinsValues = parseTonViewerShitCoinsValues();
 
   //add history
-  tab.getRange("B2:AT2").setFormulas([
+  tab.getRange("B2:AV2").setFormulas([
     [
       "=B3+FLOW!B2", //USDT
       "=C3+FLOW!C2", //TON
@@ -88,8 +89,8 @@ function updateHISTORYtab(tab) {
       "=R3+FLOW!R2", //SCALE
       "=S3+FLOW!S2", //ARBUZ
       "=T3+FLOW!T2", //TONNEL
-      "", //U empty
-      "", //V empty
+      "=U3+FLOW!U2", //DFC
+      "=V3+FLOW!V2", //LP dedust
       "", //W empty
       "", //X empty
       "=Y3+FLOW!AA2", //Y SPENT USD
@@ -114,6 +115,8 @@ function updateHISTORYtab(tab) {
       "=R2*CURRENCY!R2", //SCALE $ value
       "=S2*CURRENCY!S2", //ARBUZ $ value
       "=T2*CURRENCY!T2", //TONNEL $ value
+      "=U2*CURRENCY!U2", //DFC $ value
+      "=V2*CURRENCY!V2", //LP $ value
     ],
   ]);
 
