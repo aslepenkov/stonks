@@ -101,7 +101,7 @@ function updateHISTORYtab(tab) {
       //USD VALUES
       "", //AA DATE
       "=B2*CURRENCY!B2", //AB USDT value
-      "=C2*CURRENCY!B2", //AC TON $ value
+      "=C2*CURRENCY!C2", //AC TON $ value
       "=D2*CURRENCY!D2", //AD BTC $ value
       "=E2*CURRENCY!E2", //AE ETH $ value
       "=F2*CURRENCY!F2", //AF DOGE $ value
