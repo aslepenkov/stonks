@@ -15,6 +15,8 @@ function getJettonsList() {
     "EQDNDv54v_TEU5t26rFykylsdPQsv5nsSZaH_v7JSJPtMitv", //TONNEL
     "EQD26zcd6Cqpz7WyLKVH8x_cD6D7tBrom6hKcycv8L8hV0GP", //DFC
     //LP dedust 
+    "EQBNRcBVHlpan383FrWWQMKOjSLLLaoRdktdktSH8d6YCYtz", //Dogwifhoodie
+    "EQATcUc69sGSCCMSadsVUKdGwM1BMKS-HKCWGPk60xZGgwsK" //FISH
     //NEW TOKEN HERE
   ];
 
