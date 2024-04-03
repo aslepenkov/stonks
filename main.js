@@ -80,16 +80,21 @@ function updateFLOWtab(tab) {
   //add new row
   tab.insertRowAfter(1);
 
-  //add today
-  tab.getRange("A2").setValue(formatDate(new Date()));
+  //add history
+  tab.getRange("A2").setFormulas([
+    [
+      "=CURRENCY!A2"
+    ]
+  ]);
 }
 function updateHISTORYtab(tab) {
   //add new row
   tab.insertRowAfter(1);
 
   //add history
-  tab.getRange("B2:AM2").setFormulas([
+  tab.getRange("A2:AM2").setFormulas([
     [
+      "=CURRENCY!A2",
       "=B3+FLOW!B2", //USDT
       "=C3+FLOW!C2", //TON
       "=D3+FLOW!D2", //BTC
@@ -166,66 +171,64 @@ function updateHISTORYtab(tab) {
   //range.offset(0, 0, 1, numColumns).setValues([convertedValues.slice(0, numColumns)]);
 
   //add today
-  tab.getRange("A2").setValue(formatDate(new Date()));
+  //tab.getRange("A2").setValue(formatDate(new Date()));
 }
 
 function updateUSDHISTORYtab(tab) {
   //add new row
   tab.insertRowAfter(1);
 
-  //add today
-  tab.getRange("A2").setValue(formatDate(new Date()));
-
   //add history
-  tab.getRange("B2:AM2").setFormulas([
+  tab.getRange("A2:AM2").setFormulas([
     [
-      "=B2*CURRENCY!B2", //AB USDT value
-      "=C2*CURRENCY!C2", //AC TON $ value
-      "=D2*CURRENCY!D2", //AD BTC $ value
-      "=E2*CURRENCY!E2", //AE ETH $ value
-      "=F2*CURRENCY!F2", //AF DOGE $ value
-      "=G2*CURRENCY!G2*CURRENCY!C2", //AG TAN $ value
-      "=H2*CURRENCY!H2", //AMBR $ value
-      "=I2*CURRENCY!I2", //GLINT $ value
-      "=J2*CURRENCY!J2", //JETTON $ value
-      "=K2*CURRENCY!K2", //LAVE $ value
-      "=L2*CURRENCY!L2", //PUNK $ value
-      "=M2*CURRENCY!M2", //RAFF $ value
-      "=N2*CURRENCY!N2", //JWBTC $ value
-      "=O2*CURRENCY!O2", //TSTON $ value
-      "=P2*CURRENCY!P2", //jUSDT $ value
-      "=Q2*CURRENCY!Q2", //KINGY $ value
-      "=R2*CURRENCY!R2", //SCALE $ value
-      "=S2*CURRENCY!S2", //ARBUZ $ value
-      "=T2*CURRENCY!T2", //TONNEL $ value
-      "=U2*CURRENCY!U2", //DFC $ value
-      "=V2*CURRENCY!V2", //LP $ value
-      "=W2*CURRENCY!W2", //Dogwifhoodie $ value
-      "=X2*CURRENCY!X2", //FISH $ value
-      "=Y2*CURRENCY!Y2", 
-      "=Z2*CURRENCY!Z2", 
-      "=AA2*CURRENCY!AA2", //[SPENT USD]
-      "=AB2*CURRENCY!AB2", 
-      "=AC2*CURRENCY!AC2", 
-      "=AD2*CURRENCY!AD2", 
-      "=AE2*CURRENCY!AE2", 
-      "=AF2*CURRENCY!AF2", 
-      "=AG2*CURRENCY!AG2", 
-      "=AH2*CURRENCY!AH2", 
-      "=AI2*CURRENCY!AI2", 
-      "=AJ2*CURRENCY!AJ2", 
-      "=AK2*CURRENCY!AK2", 
-      "=AL2*CURRENCY!AL2", 
-      "=AM2*CURRENCY!AM2", 
+      "=CURRENCY!A2",
+      "=HISTORY!B2*CURRENCY!B2", //AB USDT value
+      "=HISTORY!C2*CURRENCY!C2", //AC TON $ value
+      "=HISTORY!D2*CURRENCY!D2", //AD BTC $ value
+      "=HISTORY!E2*CURRENCY!E2", //AE ETH $ value
+      "=HISTORY!F2*CURRENCY!F2", //AF DOGE $ value
+      "=HISTORY!G2*CURRENCY!G2*CURRENCY!C2", //AG TAN $ value
+      "=HISTORY!H2*CURRENCY!H2", //AMBR $ value
+      "=HISTORY!I2*CURRENCY!I2", //GLINT $ value
+      "=HISTORY!J2*CURRENCY!J2", //JETTON $ value
+      "=HISTORY!K2*CURRENCY!K2", //LAVE $ value
+      "=HISTORY!L2*CURRENCY!L2", //PUNK $ value
+      "=HISTORY!M2*CURRENCY!M2", //RAFF $ value
+      "=HISTORY!N2*CURRENCY!N2", //JWBTC $ value
+      "=HISTORY!O2*CURRENCY!O2", //TSTON $ value
+      "=HISTORY!P2*CURRENCY!P2", //jUSDT $ value
+      "=HISTORY!Q2*CURRENCY!Q2", //KINGY $ value
+      "=HISTORY!R2*CURRENCY!R2", //SCALE $ value
+      "=HISTORY!S2*CURRENCY!S2", //ARBUZ $ value
+      "=HISTORY!T2*CURRENCY!T2", //TONNEL $ value
+      "=HISTORY!U2*CURRENCY!U2", //DFC $ value
+      "=HISTORY!V2*CURRENCY!V2", //LP $ value
+      "=HISTORY!W2*CURRENCY!W2", //Dogwifhoodie $ value
+      "=HISTORY!X2*CURRENCY!X2", //FISH $ value
+      "=HISTORY!Y2*CURRENCY!Y2", 
+      "=HISTORY!Z2*CURRENCY!Z2", 
+      "=HISTORY!AA2*CURRENCY!AA2", //[SPENT USD]
+      "=HISTORY!AB2*CURRENCY!AB2", 
+      "=HISTORY!AC2*CURRENCY!AC2", 
+      "=HISTORY!AD2*CURRENCY!AD2", 
+      "=HISTORY!AE2*CURRENCY!AE2", 
+      "=HISTORY!AF2*CURRENCY!AF2", 
+      "=HISTORY!AG2*CURRENCY!AG2", 
+      "=HISTORY!AH2*CURRENCY!AH2", 
+      "=HISTORY!AI2*CURRENCY!AI2", 
+      "=HISTORY!AJ2*CURRENCY!AJ2", 
+      "=HISTORY!AK2*CURRENCY!AK2", 
+      "=HISTORY!AL2*CURRENCY!AL2", 
+      "=HISTORY!AM2*CURRENCY!AM2", 
     ],
   ]);
 }
 
 function updateLOGBOOKtab(tab) {
   tab.insertRowAfter(1);
-  tab.getRange("A2").setValue(formatDate(new Date()));
-  tab.getRange("B2:D2").setFormulas([
+  tab.getRange("A2:D2").setFormulas([
     [
+      "=CURRENCY!A2",
       "=B3+FLOW!AA2", //SPENT USD
       "=ROUND(SUM($HISTORY!B2:$HISTORY!AM2),0)", //BALANCE USD
       "=ROUND(100-(C3/C2 *100),2)/100", 
