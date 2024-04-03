@@ -14,9 +14,24 @@ function getJettonsList() {
     "EQAM2KWDp9lN0YvxvfSbI0ryjBXwM70rakpNIHbuETatRWA1", //ARBUZ
     "EQDNDv54v_TEU5t26rFykylsdPQsv5nsSZaH_v7JSJPtMitv", //TONNEL
     "EQD26zcd6Cqpz7WyLKVH8x_cD6D7tBrom6hKcycv8L8hV0GP", //DFC
-    //LP dedust 
+    //[LP dedust column] 
     "EQBNRcBVHlpan383FrWWQMKOjSLLLaoRdktdktSH8d6YCYtz", //Dogwifhoodie
-    "EQATcUc69sGSCCMSadsVUKdGwM1BMKS-HKCWGPk60xZGgwsK" //FISH
+    "EQATcUc69sGSCCMSadsVUKdGwM1BMKS-HKCWGPk60xZGgwsK", //FISH
+    "EQD_ETL-SQRFwuxIIDwvo8CiwuVK9o7lXgfNVUSz9tllGMz9", //DYNYA
+    "EQAAV0-SGQ9biuzgd5sgrnv0z_7s46bVvhQzBuWOLnSFCkhB", //jNANO
+    //[SPENT USD COLUMN]
+    "EQBEBb0OjyNx-V3YY0gsrBKnFs_LHYAaqCGN27_v_QadZAU_", //APE
+    "EQDSK89vV0Ta3Z45aERfc4nge_qS2jieJ1F5Cf_7Wl5sNCrg", //JOKER
+    "EQDgSR_-4FDlXPfMVefXX1IIXMWBH4YfYV1a_8cJ0XsGVdsf", //PROTON
+    "EQATgD7dao9jWBdz_qKL-UJZCXZGQvV5HJVUC85ssgmHKWll", //PLANKTON
+    "EQC47093oX5Xhb0xuk2lCr2RhS8rj-vul61u4W2UH5ORmG_O", //GRAM
+    "EQBtcL4JA-PdPiUkB8utHcqdaftmUSTqdL8Z1EeXePLti_nK", //WEB3
+    "EQBB-EMREJkIHVYG5DPiklOhWPcsCaxjL9HKmgRvuGtz_1lu", //NOBBY
+    "EQAl0ChJyynGWg0tGMCBM6soeKJrKtNm_IATf17jcFEQx0Ww", //POVEL DUREV
+    "EQCtnNdPnA4NTt4XQ_M21dKyoUR7da_SX7uqtO-wh1HeqsX4", //INDICA
+    "EQD5ty5IxV3HECEY1bbbdd7rNNY-ZcA-pAIGQXyyRZRED9v3", //STBL
+    "EQAZv2Cc9CNX6y0ONexdgywv1oK5yaGAmd5BDhlb7hgoB-Kk", //STEPFROG
+    "EQCvaf0JMrv6BOvPpAgee08uQM_uRpUd__fhA7Nm8twzvbE_", //TONUP
     //NEW TOKEN HERE
   ];
 
