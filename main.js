@@ -64,8 +64,11 @@ function updateCURRENCYtab(tab) {
       shitCoinsPrices[i++], //JOKER
       shitCoinsPrices[i++], //PROTON
       shitCoinsPrices[i++], //PLANKTON
+      shitCoinsPrices[i++], //GRAM
       shitCoinsPrices[i++], //WEB3
+      shitCoinsPrices[i++], //NOBBY
       shitCoinsPrices[i++], //POVEL DUREV
+      shitCoinsPrices[i++], //INDICA
       shitCoinsPrices[i++], //STBL
       shitCoinsPrices[i++], //STEPFROG
       shitCoinsPrices[i++], //TONUP
