@@ -230,7 +230,7 @@ function updateLOGBOOKtab(tab) {
     [
       "=CURRENCY!A2",
       "=B3+FLOW!AA2", //SPENT USD
-      "=ROUND(SUM($HISTORY!B2:$HISTORY!AM2),0)", //BALANCE USD
+      "=ROUND(SUM($HISTORY!B2:AM2),0)", //BALANCE USD
       "=ROUND(100-(C3/C2 *100),2)/100", 
     ],
   ]);
