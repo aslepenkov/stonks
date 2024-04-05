@@ -8,11 +8,12 @@ const spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
 const dashTab = spreadSheet.getSheetByName("DASHBOARD");
 const historyTab = spreadSheet.getSheetByName("HISTORY");
 const currencyTab = spreadSheet.getSheetByName("CURRENCY");
+const logbookTab = spreadSheet.getSheetByName("LOGBOOK");
 const charts = dashTab.getCharts();
 
 function sendStonksChartCommand() {
-  let spentUSD = Math.round(historyTab.getRange("Y2").getValue());
-  let balanceUSD = Math.round(historyTab.getRange("Z2").getValue());
+  let spentUSD = Math.round(logbookTab.getRange("B2").getValue());
+  let balanceUSD = Math.round(logbookTab.getRange("C2").getValue());
 
   let winRate = -Number(100 - (+balanceUSD / +spentUSD) * 100).toFixed(2);
   let win = balanceUSD > spentUSD ? `🟩 +${winRate}` : `🟥 ${winRate}`;
