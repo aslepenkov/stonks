@@ -27,7 +27,7 @@ function getJettonsList() {
     "EQC47093oX5Xhb0xuk2lCr2RhS8rj-vul61u4W2UH5ORmG_O", //GRAM
     "EQBtcL4JA-PdPiUkB8utHcqdaftmUSTqdL8Z1EeXePLti_nK", //WEB3
     "EQBB-EMREJkIHVYG5DPiklOhWPcsCaxjL9HKmgRvuGtz_1lu", //NOBBY
-    "EQAl0ChJyynGWg0tGMCBM6soeKJrKtNm_IATf17jcFEQx0Ww", //POVEL DUREV
+    "EQB02DJ0cdUD4iQDRbBv4aYG3htePHBRK1tGeRtCnatescK0", //POVEL DUREV
     "EQCtnNdPnA4NTt4XQ_M21dKyoUR7da_SX7uqtO-wh1HeqsX4", //INDICA
     "EQD5ty5IxV3HECEY1bbbdd7rNNY-ZcA-pAIGQXyyRZRED9v3", //STBL
     "EQAZv2Cc9CNX6y0ONexdgywv1oK5yaGAmd5BDhlb7hgoB-Kk", //STEPFROG
