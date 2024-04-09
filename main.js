@@ -1,4 +1,4 @@
-function mainStonksDailyFunction(hourly) {
+function mainStonksDailyFunction(hourly = false) {
   let ss = SpreadsheetApp.getActiveSpreadsheet();
   let currencyTab = ss.getSheetByName("CURRENCY");
   let flowTab = ss.getSheetByName("FLOW");
@@ -7,12 +7,11 @@ function mainStonksDailyFunction(hourly) {
   let logbookTab = ss.getSheetByName("LOGBOOK");
 
   //currency
-  currencyTab.insertRowAfter(1);
-  updateCURRENCYtab(currencyTab);
+  updateCURRENCYtab(currencyTab, hourly);
 
   if (hourly)
     return;
-  
+
   //flow
   updateFLOWtab(flowTab);
 
@@ -29,9 +28,10 @@ function mainStonksDailyFunction(hourly) {
   sendStonksChartCommand();
 }
 
-function updateCURRENCYtab(tab) {
+function updateCURRENCYtab(tab, hourly = false) {
   //add new row
-  //tab.insertRowAfter(1);
+  if (!hourly)
+    tab.insertRowAfter(1);
 
   //add values
   const tonPrice = serviceFetchTonPrice();
