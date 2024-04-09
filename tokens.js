@@ -32,6 +32,7 @@ function getJettonsList() {
     "EQD5ty5IxV3HECEY1bbbdd7rNNY-ZcA-pAIGQXyyRZRED9v3", //STBL
     "EQAZv2Cc9CNX6y0ONexdgywv1oK5yaGAmd5BDhlb7hgoB-Kk", //STEPFROG
     "EQCvaf0JMrv6BOvPpAgee08uQM_uRpUd__fhA7Nm8twzvbE_", //TONUP
+    "EQDv-yr41_CZ2urg2gfegVfa44PDPjIK9F-MilEDKDUIhlwZ", //ANON
     //NEW TOKEN HERE
   ];
 

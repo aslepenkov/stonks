@@ -43,7 +43,7 @@ function updateCURRENCYtab(tab, hourly = false) {
 
   let i = 0;
 
-  tab.getRange("A2:AM2").setValues([
+  tab.getRange("A2:AN2").setValues([
     [
       formatDate(new Date()),
       1, //USDT
@@ -84,6 +84,7 @@ function updateCURRENCYtab(tab, hourly = false) {
       shitCoinsPrices[i++], //STBL
       shitCoinsPrices[i++], //STEPFROG
       shitCoinsPrices[i++], //TONUP
+      shitCoinsPrices[i++], //ANON
     ],
   ]);
 }
@@ -105,7 +106,7 @@ function updateHISTORYtab(tab) {
   tab.insertRowAfter(1);
 
   //add history
-  tab.getRange("A2:AM2").setFormulas([
+  tab.getRange("A2:AN2").setFormulas([
     [
       "=CURRENCY!A2",
       "=B3+FLOW!B2", //USDT
@@ -146,6 +147,7 @@ function updateHISTORYtab(tab) {
       "=AK3+FLOW!AK2", 
       "=AL3+FLOW!AL2", 
       "=AM3+FLOW!AM2", 
+      "=AN3+FLOW!AN2", 
     ],
   ]);
 }
@@ -155,7 +157,7 @@ function updateUSDHISTORYtab(tab) {
   tab.insertRowAfter(1);
 
   //add history
-  tab.getRange("A2:AM2").setFormulas([
+  tab.getRange("A2:AN2").setFormulas([
     [
       "=CURRENCY!A2",
       "=HISTORY!B2*CURRENCY!B2", //AB USDT value
@@ -196,6 +198,7 @@ function updateUSDHISTORYtab(tab) {
       "=HISTORY!AK2*CURRENCY!AK2", 
       "=HISTORY!AL2*CURRENCY!AL2", 
       "=HISTORY!AM2*CURRENCY!AM2", 
+      "=HISTORY!AN2*CURRENCY!AN2", 
     ],
   ]);
 }
@@ -206,7 +209,7 @@ function updateLOGBOOKtab(tab) {
     [
       "=CURRENCY!A2",
       "=B3+FLOW!AA2", //SPENT USD
-      "=ROUND(SUM($HISTORY!B2:AM2),0)", //BALANCE USD
+      "=ROUND(SUM($HISTORY!B2:AN2),0)", //BALANCE USD
       "=ROUND(100-(C3/C2 *100),2)/100", 
     ],
   ]);
