@@ -1,11 +1,11 @@
-function mainStonksDailyFunction() {
-  let ss = SpreadsheetApp.getActiveSpreadsheet();
-  let currencyTab = ss.getSheetByName("CURRENCY");
-  let flowTab = ss.getSheetByName("FLOW");
-  let historyTab = ss.getSheetByName("HISTORY");
-  let usdHistoryTab = ss.getSheetByName("$HISTORY");
-  let logbookTab = ss.getSheetByName("LOGBOOK");
+const ss = SpreadsheetApp.getActiveSpreadsheet();
+const currencyTab = ss.getSheetByName("CURRENCY");
+const flowTab = ss.getSheetByName("FLOW");
+const historyTab = ss.getSheetByName("HISTORY");
+const usdHistoryTab = ss.getSheetByName("$HISTORY");
+const logbookTab = ss.getSheetByName("LOGBOOK");
 
+function mainStonksDailyFunction() {
   //currency
   currencyTab.insertRowAfter(1);
   updateCURRENCYtab(currencyTab);
