@@ -6,20 +6,29 @@ function mainStonksDailyFunction() {
   let usdHistoryTab = ss.getSheetByName("$HISTORY");
   let logbookTab = ss.getSheetByName("LOGBOOK");
 
-  //update
+  //currency
+  currencyTab.insertRowAfter(1);
   updateCURRENCYtab(currencyTab);
+
+  //flow
   updateFLOWtab(flowTab);
+
+  //history
   updateHISTORYtab(historyTab);
+
+  //usdhistory
   updateUSDHISTORYtab(usdHistoryTab);
+
+  //logbook
   updateLOGBOOKtab(logbookTab);
 
-  //send
+  //send chart
   sendStonksChartCommand();
 }
 
 function updateCURRENCYtab(tab) {
   //add new row
-  tab.insertRowAfter(1);
+  //tab.insertRowAfter(1);
 
   //add values
   const tonPrice = serviceFetchTonPrice();
@@ -87,6 +96,7 @@ function updateFLOWtab(tab) {
     ]
   ]);
 }
+
 function updateHISTORYtab(tab) {
   //add new row
   tab.insertRowAfter(1);
