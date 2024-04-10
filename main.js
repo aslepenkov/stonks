@@ -9,8 +9,7 @@ function mainStonksDailyFunction(hourly = false) {
   //currency
   updateCURRENCYtab(currencyTab, hourly);
 
-  if (hourly)
-    return;
+  if (hourly) return;
 
   //flow
   updateFLOWtab(flowTab);
@@ -30,8 +29,7 @@ function mainStonksDailyFunction(hourly = false) {
 
 function updateCURRENCYtab(tab, hourly = false) {
   //add new row
-  if (!hourly)
-    tab.insertRowAfter(1);
+  if (!hourly) tab.insertRowAfter(1);
 
   //add values
   const tonPrice = serviceFetchTonPrice();
@@ -43,9 +41,10 @@ function updateCURRENCYtab(tab, hourly = false) {
 
   let i = 0;
 
-  tab.getRange("A2:AN2").setValues([
+  if (!hourly) tab.getRange("A2").setValues([[formatDate(new Date())]]);
+
+  tab.getRange("B2:AN2").setValues([
     [
-      formatDate(new Date()),
       1, //USDT
       tonPrice, //TON
       btcPrice, //BTC
@@ -71,7 +70,7 @@ function updateCURRENCYtab(tab, hourly = false) {
       shitCoinsPrices[i++], //FISH
       shitCoinsPrices[i++], //DYNYA
       shitCoinsPrices[i++], //jNANO
-      1, //[SPENT USD COLUMN]
+      0, //[SPENT USD COLUMN]
       shitCoinsPrices[i++], //APE
       shitCoinsPrices[i++], //JOKER
       shitCoinsPrices[i++], //PROTON
@@ -94,11 +93,7 @@ function updateFLOWtab(tab) {
   tab.insertRowAfter(1);
 
   //add history
-  tab.getRange("A2").setFormulas([
-    [
-      "=CURRENCY!A2"
-    ]
-  ]);
+  tab.getRange("A2").setFormulas([["=CURRENCY!A2"]]);
 }
 
 function updateHISTORYtab(tab) {
@@ -132,22 +127,22 @@ function updateHISTORYtab(tab) {
       "=V3+FLOW!V2", //LP dedust
       "=W3+FLOW!W2", //Dogwifhoodie
       "=X3+FLOW!X2", //FISH
-      "=Y3+FLOW!Y2", 
-      "=Z3+FLOW!Z2", 
+      "=Y3+FLOW!Y2",
+      "=Z3+FLOW!Z2",
       "=0", //[SPENT USD]
-      "=AB3+FLOW!AB2", 
-      "=AC3+FLOW!AC2", 
-      "=AD3+FLOW!AD2", 
-      "=AE3+FLOW!AE2", 
-      "=AF3+FLOW!AF2", 
-      "=AG3+FLOW!AG2", 
-      "=AH3+FLOW!AH2", 
-      "=AI3+FLOW!AI2", 
-      "=AJ3+FLOW!AJ2", 
-      "=AK3+FLOW!AK2", 
-      "=AL3+FLOW!AL2", 
-      "=AM3+FLOW!AM2", 
-      "=AN3+FLOW!AN2", 
+      "=AB3+FLOW!AB2",
+      "=AC3+FLOW!AC2",
+      "=AD3+FLOW!AD2",
+      "=AE3+FLOW!AE2",
+      "=AF3+FLOW!AF2",
+      "=AG3+FLOW!AG2",
+      "=AH3+FLOW!AH2",
+      "=AI3+FLOW!AI2",
+      "=AJ3+FLOW!AJ2",
+      "=AK3+FLOW!AK2",
+      "=AL3+FLOW!AL2",
+      "=AM3+FLOW!AM2",
+      "=AN3+FLOW!AN2",
     ],
   ]);
 }
@@ -183,22 +178,22 @@ function updateUSDHISTORYtab(tab) {
       "=HISTORY!V2*CURRENCY!V2", //LP $ value
       "=HISTORY!W2*CURRENCY!W2", //Dogwifhoodie $ value
       "=HISTORY!X2*CURRENCY!X2", //FISH $ value
-      "=HISTORY!Y2*CURRENCY!Y2", 
-      "=HISTORY!Z2*CURRENCY!Z2", 
+      "=HISTORY!Y2*CURRENCY!Y2",
+      "=HISTORY!Z2*CURRENCY!Z2",
       "=0", //[SPENT USD]
-      "=HISTORY!AB2*CURRENCY!AB2", 
-      "=HISTORY!AC2*CURRENCY!AC2", 
-      "=HISTORY!AD2*CURRENCY!AD2", 
-      "=HISTORY!AE2*CURRENCY!AE2", 
-      "=HISTORY!AF2*CURRENCY!AF2", 
-      "=HISTORY!AG2*CURRENCY!AG2", 
-      "=HISTORY!AH2*CURRENCY!AH2", 
-      "=HISTORY!AI2*CURRENCY!AI2", 
-      "=HISTORY!AJ2*CURRENCY!AJ2", 
-      "=HISTORY!AK2*CURRENCY!AK2", 
-      "=HISTORY!AL2*CURRENCY!AL2", 
-      "=HISTORY!AM2*CURRENCY!AM2", 
-      "=HISTORY!AN2*CURRENCY!AN2", 
+      "=HISTORY!AB2*CURRENCY!AB2",
+      "=HISTORY!AC2*CURRENCY!AC2",
+      "=HISTORY!AD2*CURRENCY!AD2",
+      "=HISTORY!AE2*CURRENCY!AE2",
+      "=HISTORY!AF2*CURRENCY!AF2",
+      "=HISTORY!AG2*CURRENCY!AG2",
+      "=HISTORY!AH2*CURRENCY!AH2",
+      "=HISTORY!AI2*CURRENCY!AI2",
+      "=HISTORY!AJ2*CURRENCY!AJ2",
+      "=HISTORY!AK2*CURRENCY!AK2",
+      "=HISTORY!AL2*CURRENCY!AL2",
+      "=HISTORY!AM2*CURRENCY!AM2",
+      "=HISTORY!AN2*CURRENCY!AN2",
     ],
   ]);
 }
@@ -210,7 +205,7 @@ function updateLOGBOOKtab(tab) {
       "=CURRENCY!A2",
       "=B3+FLOW!AA2", //SPENT USD
       "=ROUND(SUM($HISTORY!B2:AN2),0)", //BALANCE USD
-      "=ROUND(100-(C3/C2 *100),2)/100", 
+      "=ROUND(100-(C3/C2 *100),2)/100",
     ],
   ]);
 }
