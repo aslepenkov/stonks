@@ -5,6 +5,7 @@ function mainStonksDailyFunction(hourly = false) {
   let historyTab = ss.getSheetByName("HISTORY");
   let usdHistoryTab = ss.getSheetByName("$HISTORY");
   let logbookTab = ss.getSheetByName("LOGBOOK");
+  let jettonsTab = ss.getSheetByName("DEBUG");
 
   //currency
   updateCURRENCYtab(currencyTab, hourly);
@@ -22,6 +23,9 @@ function mainStonksDailyFunction(hourly = false) {
 
   //logbook
   updateLOGBOOKtab(logbookTab);
+
+  //jettons
+  updateJETTONStab(jettonsTab);
 
   //send chart
   sendStonksChartCommand();
@@ -208,4 +212,26 @@ function updateLOGBOOKtab(tab) {
       "=ROUND(100-(C3/C2 *100),2)/100",
     ],
   ]);
+}
+
+function updateJETTONStab(tab) {
+  tab.insertRowAfter(1);
+
+  const jettonsBalances = serviceFetchJettonsBalances();
+  const jettonSymbols = jettonsBalances.map(j => j.symbol)
+  const letter = getColumnLetter(1 + jettonsBalances.length)
+  let values = [];
+
+  jettonSymbols.forEach(symbol => {
+    values.push(symbol);
+  });
+
+  tab.getRange(`B1:${letter}2`).setValues([values]);
+
+  // tab.getRange("A2").setFormulas([
+  // [
+  // "=CURRENCY!A2",
+  // ],
+  // ]);
+
 }

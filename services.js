@@ -2,6 +2,39 @@ const TONAPI_API_TOKEN =
   PropertiesService.getScriptProperties().getProperty("TONAPI_API_TOKEN");
 const TON_ADDRESS =
   PropertiesService.getScriptProperties().getProperty("TON_ADDRESS");
+const TON_ACCOUNT_ID =
+  PropertiesService.getScriptProperties().getProperty("TON_ACCOUNT_ID");
+
+
+function serviceFetchJettonsBalances() {
+  try {
+    const headers = {
+      Authorization: "Bearer " + TONAPI_API_TOKEN,
+    };
+
+    const options = {
+      headers: headers,
+    };
+
+    const apiUrl = `https://tonapi.io/v2/accounts/${TON_ACCOUNT_ID}/jettons?currencies=USD`;
+    const response = UrlFetchApp.fetch(apiUrl, options);
+    const content = JSON.parse(response.getContentText());
+
+    return content.balances
+      //.filter(i => +i.balance > 0)
+      .filter(i => +i.price.prices.USD > 0)
+      .map(i => ({
+        balance: +i.balance * 10 ** -i.jetton.decimals,
+        symbol: i.jetton.symbol.toUpperCase(),
+        price: +i.price.prices.USD
+      }))
+      .sort((a, b) => a.symbol.localeCompare(b.symbol));
+
+  } catch (error) {
+    return [];
+  }
+}
+
 
 function serviceFetchTonShitCoinsPrices() {
   try {
