@@ -25,7 +25,7 @@ function mainStonksDailyFunction(hourly = false) {
   updateLOGBOOKtab(logbookTab);
 
   //jettons
-  updateJETTONStab(jettonsTab);
+  //updateJETTONStab(jettonsTab);
 
   //send chart
   sendStonksChartCommand();
