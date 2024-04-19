@@ -6,10 +6,10 @@ function sendStonksChartCommand() {
   let winRate = -Number(100 - (+balanceUSD / +spentUSD) * 100).toFixed(2);
   let win = balanceUSD > spentUSD ? `🟩 +${winRate}` : `🟥 ${winRate}`;
 
-  let currTon = currencyTab.getRange("C2").getValue();
+  let currTan = Math.round(currencyTab.getRange("C2").getValue());
   let currBTC = Math.round(currencyTab.getRange("D2").getValue());
   let currETH = Math.round(currencyTab.getRange("E2").getValue());
-  let currTan = Math.round(currencyTab.getRange("G2").getValue());
+  let currTon = currencyTab.getRange("F2").getValue();
 
   let media = [
     {
