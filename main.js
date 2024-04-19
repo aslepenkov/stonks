@@ -41,12 +41,11 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
 
   if (daily) {
     currencyTab.insertRowAfter(1);
-    currencyTab.getRange("A2").setFormulas([[`=${currencyTabName}!A2`]]);
+    currencyTab.getRange("A2").setValues([[`${new Date()}`]]);
   }
 
   //fixed + jettons. jettons count is variable
   let arr = [tanPrice, btcPrice, ethPrice, tonPrice, ...prices]
-  console.log(arr)
   currencyTab.getRange(`C2:${maxLetter}2`).setValues([arr]);
 }
 
@@ -96,7 +95,7 @@ function updateLOGBOOKtab(maxLetter) {
     [
       `=${currencyTabName}!A2`, //DATE
       `=B3+${historyTabName}!B2`, //SPENT USD
-      `=ROUND(SUM(${historyTabName}!C2:${maxLetter}2),0)`, //BALANCE USD
+      `=ROUND(SUM(${usdHistoryTab}!C2:${maxLetter}2),0)`, //BALANCE USD
       `=ROUND(100-(C3/C2 *100),2)/100`, //DAILY GAIN
     ],
   ]);
