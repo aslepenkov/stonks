@@ -41,7 +41,9 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
 
   if (daily) {
     currencyTab.insertRowAfter(1);
-    currencyTab.getRange("A2").setValues([[`${new Date()}`]]);
+    const formattedDate = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+
+    currencyTab.getRange("A2").setValues([[`${formattedDate}`]]);
   }
 
   //fixed + jettons. jettons count is variable
@@ -95,7 +97,7 @@ function updateLOGBOOKtab(maxLetter) {
     [
       `=${currencyTabName}!A2`, //DATE
       `=B3+${historyTabName}!B2`, //SPENT USD
-      `=ROUND(SUM(${usdHistoryTab}!C2:${maxLetter}2),0)`, //BALANCE USD
+      `=ROUND(SUM(${usdHistoryTabName}!C2:${maxLetter}2),0)`, //BALANCE USD
       `=ROUND(100-(C3/C2 *100),2)/100`, //DAILY GAIN
     ],
   ]);
