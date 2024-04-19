@@ -1,11 +1,3 @@
-const TONAPI_API_TOKEN =
-  PropertiesService.getScriptProperties().getProperty("TONAPI_API_TOKEN");
-const TON_ADDRESS =
-  PropertiesService.getScriptProperties().getProperty("TON_ADDRESS");
-const TON_ACCOUNT_ID =
-  PropertiesService.getScriptProperties().getProperty("TON_ACCOUNT_ID");
-
-
 function serviceFetchJettonsBalances() {
   try {
     const headers = {
@@ -22,7 +14,11 @@ function serviceFetchJettonsBalances() {
 
     return content.balances
       //.filter(i => +i.balance > 0)
-      .filter(i => +i.price.prices.USD > 0)
+      //.filter(i => +i.price.prices.USD > 0)
+      .filter(i => i.jetton.symbol.toUpperCase() !== "LP")
+      .filter(i => i.jetton.symbol.toUpperCase() !== "@BTC25")
+      .filter(i => !i.jetton.symbol.toUpperCase().endsWith("-TON"))
+      .filter(i => !i.jetton.symbol.toUpperCase().endsWith(" LP"))
       .map(i => ({
         balance: +i.balance * 10 ** -i.jetton.decimals,
         symbol: i.jetton.symbol.toUpperCase(),
@@ -35,8 +31,7 @@ function serviceFetchJettonsBalances() {
   }
 }
 
-
-function serviceFetchTonShitCoinsPrices() {
+function serviceFetchJettonPricesByTokensList(tokens) {
   try {
     const headers = {
       Authorization: "Bearer " + TONAPI_API_TOKEN,
@@ -46,21 +41,39 @@ function serviceFetchTonShitCoinsPrices() {
       headers: headers,
     };
 
-    const tokens = getJettonsList();
     const tokensQueryParam = tokens.join("%2C");
     const apiUrl = `https://tonapi.io/v2/rates?tokens=${tokensQueryParam}&currencies=usd`;
     const response = UrlFetchApp.fetch(apiUrl, options);
     const content = JSON.parse(response.getContentText());
 
     const usdPrices = tokens.map((token) => content.rates[token].prices.USD);
-    //console.log(usdPrices)
     return usdPrices;
   } catch (error) {
     return Array(tokens.length).fill(0);
   }
 }
 
-function serviceFetchTonPrice() {
+function serviceFetchTONBalance() {
+  try {
+    const headers = {
+      Authorization: "Bearer " + TONAPI_API_TOKEN,
+    };
+
+    const options = {
+      headers: headers,
+    };
+
+    const apiUrl = `https://tonapi.io/v2/accounts/${TON_ACCOUNT_ID}`;
+    const response = UrlFetchApp.fetch(apiUrl, options);
+    const content = JSON.parse(response.getContentText());
+
+    return content.balance * 10 ** -9;
+  } catch (error) {
+    return 0;
+  }
+}
+
+function serviceFetchTONPrice() {
   try {
     const response = UrlFetchApp.fetch(
       "https://tonapi.io/v2/rates?tokens=ton&currencies=usd"
@@ -119,37 +132,6 @@ function serviceParseTANPrice() {
     const match = /(\d+\.?\d+\sTON)/.exec(subString);
 
     return match ? parseInt(match[1]).toFixed() || 0 : 0;
-  } catch (error) {
-    return 0;
-  }
-}
-
-function serviceParseTonViewerShitCoinsValues() {
-  try {
-    const url = `https://tonviewer.com/${TON_ADDRESS}?section=tokens`;
-    let html = UrlFetchApp.fetch(url).getContentText();
-    html = removeSVGandIMG(html);
-
-    const tableStartIndex = html.indexOf("Methods") ?? 0;
-    const tableEndIndex = html.indexOf("Privacy") ?? html.length;
-
-    let subString = html.substring(tableStartIndex, tableEndIndex);
-    subString = subString.substring(
-      subString.indexOf("<div class") ?? 0,
-      subString.indexOf("<a href") ?? subString.length
-    );
-
-    const tokens = extractTokenNames(subString);
-
-    //console.log(tokens)
-    const sortedKeys = Object.keys(tokens).sort();
-    const keysArray = sortedKeys.map((key) => key);
-    const valuesArray = sortedKeys.map((key) => tokens[key]);
-
-    console.log(keysArray);
-    console.log(valuesArray);
-
-    return valuesArray;
   } catch (error) {
     return 0;
   }

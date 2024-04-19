@@ -26,7 +26,7 @@ function deleteLastRow() {
 
 
 
-function debugServices() {
+function debugCallAllServices() {
   const functions = Object.getOwnPropertyNames(this).filter(
     (name) =>
       typeof this[name] === "function" &&
