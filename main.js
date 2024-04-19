@@ -51,7 +51,7 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
 }
 
 function fillHistoryTab(maxLetter, balances, daily) {
-  let tonBalance = fetchTONBalance();
+  let tonBalance = serviceFetchTONBalance();
 
   if (daily) {
     historyTab.insertRowAfter(1);
