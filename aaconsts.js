@@ -11,7 +11,7 @@ const TON_ACCOUNT_ID =
 
 const MSG_THREAD = 9
 
-const startIndex = 4;
+const startIndex = 7;
 
 const currencyTabName = "AUTOCURRENCY";
 const historyTabName = "AUTOHISTORY";

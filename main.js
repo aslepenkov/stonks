@@ -81,9 +81,9 @@ function fillUSDHistoryTab(maxLetter, usdHistoryTabFormulas, daily) {
       `=${currencyTabName}!A2`, //DATE
       `=SUM(C2:${maxLetter}2)`, //TOTAL SUM
       `=${historyTabName}!C2*${currencyTabName}!C2*${currencyTabName}!F2`, //TAN
-      `=${historyTabName}!D2*${historyTabName}!D2`, //BTC
-      `=${historyTabName}!E2*${historyTabName}!E2`, //ETH
-      `=${historyTabName}!F2*${historyTabName}!F2`, //TON
+      `=${historyTabName}!D2*${currencyTabName}!D2`, //BTC
+      `=${historyTabName}!E2*${currencyTabName}!E2`, //ETH
+      `=${historyTabName}!F2*${currencyTabName}!F2`, //TON
     ]])
   }
 
