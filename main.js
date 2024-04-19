@@ -80,7 +80,7 @@ function fillUSDHistoryTab(maxLetter, usdHistoryTabFormulas, daily) {
     usdHistoryTab.getRange(`A2:F2`).setFormulas([[
       `=${currencyTabName}!A2`, //DATE
       `=SUM(C2:${maxLetter}2)`, //TOTAL SUM
-      `=${historyTabName}!C2*${historyTabName}!C2*${currencyTabName}!F2`, //TAN
+      `=${historyTabName}!C2*${currencyTabName}!C2*${currencyTabName}!F2`, //TAN
       `=${historyTabName}!D2*${historyTabName}!D2`, //BTC
       `=${historyTabName}!E2*${historyTabName}!E2`, //ETH
       `=${historyTabName}!F2*${historyTabName}!F2`, //TON
