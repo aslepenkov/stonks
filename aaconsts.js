@@ -24,3 +24,6 @@ const currencyTab = spreadSheet.getSheetByName(currencyTabName);
 const historyTab = spreadSheet.getSheetByName(historyTabName);
 const usdHistoryTab = spreadSheet.getSheetByName(usdHistoryTabName);
 const logbookTab = spreadSheet.getSheetByName(logbookTabName);
+
+const dailyAutofill = () => autofill(true);
+const hourlyAutofill = () => autofill(false);
