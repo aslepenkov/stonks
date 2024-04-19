@@ -32,7 +32,7 @@ function autofill(daily = false) {
 
 function fillCurrencyTab(maxLetter, symbols, prices, daily) {
   //set jettons symbols
-  currencyTab.getRange(`G1:${maxLetter}1`).setValues([symbols]);
+  currencyTab.getRange(`G1:${maxLetter}1`).setValues([...symbols]);
 
   let tonPrice = serviceFetchTONPrice();
   let btcPrice = serviceFetchBTCPrice();
@@ -46,7 +46,7 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
 
   //fixed + jettons. jettons count is variable
   currencyTab.getRange(`C2:${maxLetter}2`).setValues(
-    [tanPrice, btcPrice, ethPrice, tonPrice, ...prices]
+    [[tanPrice, btcPrice, ethPrice, tonPrice, ...prices]]
   );
 }
 
@@ -67,7 +67,7 @@ function fillHistoryTab(maxLetter, balances, daily) {
   }
 
   //ton + jettons.jettons count is variable
-  historyTab.getRange(`F2:${maxLetter}2`).setValues([tonBalance, ...balances]);
+  historyTab.getRange(`F2:${maxLetter}2`).setValues([[tonBalance, ...balances]]);
 }
 
 function fillUSDHistoryTab(maxLetter, usdHistoryTabFormulas, daily) {
