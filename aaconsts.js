@@ -1,29 +1,29 @@
-const TELEGRAM_BOT_TOKEN =
+var TELEGRAM_BOT_TOKEN =
   PropertiesService.getScriptProperties().getProperty("TELEGRAM_BOT_TOKEN");
-const TELEGRAM_CHAT_ID =
+var TELEGRAM_CHAT_ID =
   PropertiesService.getScriptProperties().getProperty("TELEGRAM_CHAT_ID");
-const TONAPI_API_TOKEN =
+var TONAPI_API_TOKEN =
   PropertiesService.getScriptProperties().getProperty("TONAPI_API_TOKEN");
-const TON_ADDRESS =
+var TON_ADDRESS =
   PropertiesService.getScriptProperties().getProperty("TON_ADDRESS");
-const TON_ACCOUNT_ID =
+var TON_ACCOUNT_ID =
   PropertiesService.getScriptProperties().getProperty("TON_ACCOUNT_ID");
 
-const MSG_THREAD = 9
+var MSG_THREAD = 9
 
-const startIndex = 7;
+var startIndex = 7;
 
-const currencyTabName = "AUTOCURRENCY";
-const historyTabName = "AUTOHISTORY";
-const usdHistoryTabName = "AUTOUSDHISTORY";
-const logbookTabName = "LOGBOOK";
+var currencyTabName = "AUTOCURRENCY";
+var historyTabName = "AUTOHISTORY";
+var usdHistoryTabName = "AUTOUSDHISTORY";
+var logbookTabName = "LOGBOOK";
 
-const spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
-const dashboardTab = spreadSheet.getSheetByName("DASHBOARD");
-const currencyTab = spreadSheet.getSheetByName(currencyTabName);
-const historyTab = spreadSheet.getSheetByName(historyTabName);
-const usdHistoryTab = spreadSheet.getSheetByName(usdHistoryTabName);
-const logbookTab = spreadSheet.getSheetByName(logbookTabName);
+var spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
+var dashboardTab = spreadSheet.getSheetByName("DASHBOARD");
+var currencyTab = spreadSheet.getSheetByName(currencyTabName);
+var historyTab = spreadSheet.getSheetByName(historyTabName);
+var usdHistoryTab = spreadSheet.getSheetByName(usdHistoryTabName);
+var logbookTab = spreadSheet.getSheetByName(logbookTabName);
 
-const dailyAutofill = () => autofill(true);
-const hourlyAutofill = () => autofill(false);
+var dailyAutofill = () => autofill(true);
+var hourlyAutofill = () => autofill(false);
