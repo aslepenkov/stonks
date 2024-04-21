@@ -25,5 +25,4 @@ var historyTab = spreadSheet.getSheetByName(historyTabName);
 var usdHistoryTab = spreadSheet.getSheetByName(usdHistoryTabName);
 var logbookTab = spreadSheet.getSheetByName(logbookTabName);
 
-var dailyAutofill = () => autofill(true);
-var hourlyAutofill = () => autofill(false);
+

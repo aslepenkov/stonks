@@ -5,7 +5,7 @@ function autofill(daily = false) {
   let usdHistoryTabFormulas = [];
 
   const jettonsBalances = serviceFetchJettonsBalances();
-  const maxLetter = gcl(4 + 2 + jettonsBalances.length)
+  const maxLetter = gcl(startIndex + jettonsBalances.length - 1)
 
   jettonsBalances.forEach((jb, index) => {
     symbols.push(jb.symbol);
@@ -17,7 +17,20 @@ function autofill(daily = false) {
     usdHistoryTabFormulas.push(`=${historyTabName}!${gcl(index)}2*${currencyTabName}!${gcl(index)}2`)
   });
 
-  //hourly + daily
+  //MAYBE NEW JETTONS? ADD NEW COLUMNS
+  const jettonsInPortfolio = currencyTab
+    .getRange(`${gcl(startIndex)}1:${gcl(maxLetter)}1`)
+    .getValues()[0]
+    .filter(value => value !== '');
+
+  const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio)
+
+  newColumnIdx.forEach(c => {
+    currencyTab.insertColumnsBefore(c, 1);
+    historyTab.insertColumnsBefore(c, 1);
+    usdHistoryTab.insertColumnsBefore(c, 1);
+  });
+
   fillCurrencyTab(maxLetter, symbols, prices, daily)
   fillHistoryTab(maxLetter, balances, daily)
   fillUSDHistoryTab(maxLetter, usdHistoryTabFormulas, daily)
