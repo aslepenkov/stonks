@@ -12,3 +12,12 @@ function debugCallAllServices() {
     Logger.log(`${funcName}: {result}`);
   });
 }
+
+function deleteRow(really, ...tabs) {
+  if (!really)
+    return;
+
+  tabs.forEach(tab => {
+    tab.deleteRow(2);
+  });
+}
