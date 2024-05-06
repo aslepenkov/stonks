@@ -2,41 +2,57 @@ function autofill(daily = false) {
   let symbols = [];
   let balances = [];
   let prices = [];
+
   let usdHistoryTabFormulas = [];
+  let usdHistoryHeaderFormulas = [];
+  let historyHeaderFormulas = [];
 
   const jettonsBalances = serviceFetchJettonsBalances();
-  const maxLetter = gcl(startIndex + jettonsBalances.length - 1)
+  const maxLetter = gcl(startIndex + jettonsBalances.length - 1);
 
   jettonsBalances.forEach((jb, index) => {
+    let column = gcl(index);
+
     symbols.push(jb.symbol);
     balances.push(jb.balance);
     prices.push(jb.price);
 
     //generate common formulas
-    index += startIndex
-    usdHistoryTabFormulas.push(`=${historyTabName}!${gcl(index)}2*${currencyTabName}!${gcl(index)}2`)
+    index += startIndex;
+    usdHistoryTabFormulas.push(
+      `=${historyTabName}!${column}2*${currencyTabName}!${column}2`
+    );
+
+    historyHeaderFormulas.push(`=${currencyTabName}!${column}1`);
+    usdHistoryHeaderFormulas.push(
+      `=CONCAT("$",${currencyTabName}!${column}1)s`
+    );
   });
 
   //MAYBE NEW JETTONS? ADD NEW COLUMNS
   const jettonsInPortfolio = currencyTab
     .getRange(`${gcl(startIndex)}1:${gcl(maxLetter)}1`)
     .getValues()[0]
-    .filter(value => value !== '');
+    .filter((value) => value !== "");
 
-  const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio)
+  const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio);
 
-  newColumnIdx.forEach(c => {
+  newColumnIdx.forEach((c) => {
     currencyTab.insertColumnsBefore(c, 1);
     historyTab.insertColumnsBefore(c, 1);
     usdHistoryTab.insertColumnsBefore(c, 1);
   });
 
-  fillCurrencyTab(maxLetter, symbols, prices, daily)
-  fillHistoryTab(maxLetter, balances, daily)
-  fillUSDHistoryTab(maxLetter, usdHistoryTabFormulas, daily)
+  fillCurrencyTab(maxLetter, symbols, prices, daily);
+  fillHistoryTab(maxLetter, balances, historyHeaderFormulas, daily);
+  fillUSDHistoryTab(
+    maxLetter,
+    usdHistoryTabFormulas,
+    usdHistoryHeaderFormulas,
+    daily
+  );
 
-  if (!daily)
-    return;
+  if (!daily) return;
 
   // once in a day
   updateLOGBOOKtab(maxLetter);
@@ -54,17 +70,21 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
 
   if (daily) {
     currencyTab.insertRowAfter(1);
-    const formattedDate = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+    const formattedDate = new Date().toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric",
+    });
 
     currencyTab.getRange("A2").setValues([[`${formattedDate}`]]);
   }
 
   //fixed + jettons. jettons count is variable
-  let arr = [tanPrice, btcPrice, ethPrice, tonPrice, ...prices]
+  let arr = [tanPrice, btcPrice, ethPrice, tonPrice, ...prices];
   currencyTab.getRange(`C2:${maxLetter}2`).setValues([arr]);
 }
 
-function fillHistoryTab(maxLetter, balances, daily) {
+function fillHistoryTab(maxLetter, balances, historyHeaderFormulas, daily) {
   let tonBalance = serviceFetchTONBalance();
 
   if (daily) {
@@ -72,10 +92,10 @@ function fillHistoryTab(maxLetter, balances, daily) {
     historyTab.getRange("A2:E2").setFormulas([
       [
         `=${currencyTabName}!A2`, //DATE
-        '',//SPENT USD ENTER HERE 
-        '=C3',  //TAN
-        '=D3', //BTC
-        '=E3', //ETH
+        "", //SPENT USD ENTER HERE
+        "=C3", //TAN
+        "=D3", //BTC
+        "=E3", //ETH
       ],
     ]);
   }
@@ -83,25 +103,39 @@ function fillHistoryTab(maxLetter, balances, daily) {
   //ton + jettons.jettons count is variable
   let arr = [tonBalance, ...balances];
   historyTab.getRange(`F2:${maxLetter}2`).setValues([arr]);
+  historyTab.getRange(`G2:${maxLetter}1`).setValues([historyHeaderFormulas]);
 }
 
-function fillUSDHistoryTab(maxLetter, usdHistoryTabFormulas, daily) {
+function fillUSDHistoryTab(
+  maxLetter,
+  usdHistoryTabFormulas,
+  usdHistoryHeaderFormulas,
+  daily
+) {
   if (daily) {
     usdHistoryTab.insertRowAfter(1);
 
     //fixed columns
-    usdHistoryTab.getRange(`A2:F2`).setFormulas([[
-      `=${currencyTabName}!A2`, //DATE
-      `=SUM(C2:${maxLetter}2)`, //TOTAL SUM
-      `=${historyTabName}!C2*${currencyTabName}!C2*${currencyTabName}!F2`, //TAN
-      `=${historyTabName}!D2*${currencyTabName}!D2`, //BTC
-      `=${historyTabName}!E2*${currencyTabName}!E2`, //ETH
-      `=${historyTabName}!F2*${currencyTabName}!F2`, //TON
-    ]])
+    usdHistoryTab.getRange(`A2:F2`).setFormulas([
+      [
+        `=${currencyTabName}!A2`, //DATE
+        `=SUM(C2:${maxLetter}2)`, //TOTAL SUM
+        `=${historyTabName}!C2*${currencyTabName}!C2*${currencyTabName}!F2`, //TAN
+        `=${historyTabName}!D2*${currencyTabName}!D2`, //BTC
+        `=${historyTabName}!E2*${currencyTabName}!E2`, //ETH
+        `=${historyTabName}!F2*${currencyTabName}!F2`, //TON
+      ],
+    ]);
   }
 
   //jettons count is variable
-  usdHistoryTab.getRange(`G2:${maxLetter}2`).setFormulas([[...usdHistoryTabFormulas]]);
+  usdHistoryTab
+    .getRange(`G2:${maxLetter}2`)
+    .setFormulas([[...usdHistoryTabFormulas]]);
+
+  usdHistoryTab
+    .getRange(`G2:${maxLetter}1`)
+    .setValues([usdHistoryHeaderFormulas]);
 }
 
 function updateLOGBOOKtab(maxLetter) {
