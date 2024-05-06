@@ -11,14 +11,14 @@ function autofill(daily = false) {
   const maxLetter = gcl(startIndex + jettonsBalances.length - 1);
 
   jettonsBalances.forEach((jb, index) => {
-    let column = gcl(index);
-
     symbols.push(jb.symbol);
     balances.push(jb.balance);
     prices.push(jb.price);
-
+    
     //generate common formulas
     index += startIndex;
+    let column = gcl(index);
+
     usdHistoryTabFormulas.push(
       `=${historyTabName}!${column}2*${currencyTabName}!${column}2`
     );
