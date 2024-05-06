@@ -25,7 +25,7 @@ function autofill(daily = false) {
 
     historyHeaderFormulas.push(`=${currencyTabName}!${column}1`);
     usdHistoryHeaderFormulas.push(
-      `=CONCAT("$",${currencyTabName}!${column}1)s`
+      `=CONCAT("$",${currencyTabName}!${column}1)`
     );
   });
 
