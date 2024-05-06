@@ -103,7 +103,7 @@ function fillHistoryTab(maxLetter, balances, historyHeaderFormulas, daily) {
   //ton + jettons.jettons count is variable
   let arr = [tonBalance, ...balances];
   historyTab.getRange(`F2:${maxLetter}2`).setValues([arr]);
-  historyTab.getRange(`G2:${maxLetter}1`).setValues([historyHeaderFormulas]);
+  historyTab.getRange(`G1:${maxLetter}1`).setValues([historyHeaderFormulas]);
 }
 
 function fillUSDHistoryTab(
@@ -134,7 +134,7 @@ function fillUSDHistoryTab(
     .setFormulas([[...usdHistoryTabFormulas]]);
 
   usdHistoryTab
-    .getRange(`G2:${maxLetter}1`)
+    .getRange(`G1:${maxLetter}1`)
     .setValues([usdHistoryHeaderFormulas]);
 }
 
