@@ -18,6 +18,6 @@ function deleteRow(really, ...tabs) {
     return;
 
   tabs.forEach(tab => {
-    tab.deleteRow(2);
+    spreadSheet.getSheetByName(tab).deleteRow(2);
   });
 }
