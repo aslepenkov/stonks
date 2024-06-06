@@ -15,10 +15,10 @@ function serviceFetchJettonsBalances() {
     return content.balances
       //.filter(i => +i.balance > 0)
       //.filter(i => +i.price.prices.USD > 0)
-      .filter(i => i.jetton.symbol.toUpperCase() !== "LP")
-      .filter(i => i.jetton.symbol.toUpperCase() !== "@BTC25")
-      .filter(i => !i.jetton.symbol.toUpperCase().endsWith("-TON"))
-      .filter(i => !i.jetton.symbol.toUpperCase().endsWith(" LP"))
+      //.filter(i => i.jetton.symbol.toUpperCase() !== "LP")
+      //.filter(i => i.jetton.symbol.toUpperCase() !== "@BTC25")
+      //.filter(i => !i.jetton.symbol.toUpperCase().endsWith("-TON"))
+      //.filter(i => !i.jetton.symbol.toUpperCase().endsWith(" LP"))
       .map(i => ({
         balance: +i.balance * 10 ** -i.jetton.decimals,
         symbol: i.jetton.symbol.toUpperCase(),
