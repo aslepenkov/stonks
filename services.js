@@ -11,20 +11,20 @@ function serviceFetchJettonsBalances() {
     const apiUrl = `https://tonapi.io/v2/accounts/${TON_ACCOUNT_ID}/jettons?currencies=USD`;
     const response = UrlFetchApp.fetch(apiUrl, options);
     const content = JSON.parse(response.getContentText());
+    const symbolsSet = new Set();
 
-    return content.balances
-      //.filter(i => +i.balance > 0)
-      //.filter(i => +i.price.prices.USD > 0)
-      //.filter(i => i.jetton.symbol.toUpperCase() !== "LP")
-      //.filter(i => i.jetton.symbol.toUpperCase() !== "@BTC25")
-      //.filter(i => !i.jetton.symbol.toUpperCase().endsWith("-TON"))
-      //.filter(i => !i.jetton.symbol.toUpperCase().endsWith(" LP"))
-      .map(i => ({
-        balance: +i.balance * 10 ** -i.jetton.decimals,
-        symbol: i.jetton.symbol.toUpperCase(),
-        price: +i.price.prices.USD
-      }))
-      .sort((a, b) => a.symbol.localeCompare(b.symbol));
+    return content.balances.reduce((acc, i) => {
+      const symbol = i.jetton.symbol.toUpperCase();
+      if (!symbolsSet.has(symbol)) {
+        symbolsSet.add(symbol);
+        acc.push({
+          balance: +i.balance * 10 ** -i.jetton.decimals,
+          symbol: symbol,
+          price: +i.price.prices.USD
+        });
+      }
+      return acc;
+    }, []).sort((a, b) => a.symbol.localeCompare(b.symbol));
 
   } catch (error) {
     return [];
