@@ -125,13 +125,14 @@ function serviceFetchBTCPrice() {
 
 function serviceParseTANPrice() {
   try {
-    const url = "https://ton.diamonds/collection/anonymous-telegram-numbers";
+    const url = "https://getgems.io/collection/EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N";
     const html = UrlFetchApp.fetch(url).getContentText();
-    const floorPriceIndex = html.indexOf("Floor price");
+    const floorPriceIndex = html.indexOf("floorPrice");
     const subString = html.substring(floorPriceIndex);
-    const match = /(\d+\.?\d+\sTON)/.exec(subString);
-
-    return match ? parseInt(match[1]).toFixed() || 0 : 0;
+    const regex = /floorPrice":(\d+),/;
+    const match = subString.match(regex);
+    
+    return match ? match[1] || 0 : 0;
   } catch (error) {
     return 0;
   }
