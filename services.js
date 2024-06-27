@@ -132,7 +132,7 @@ function serviceParseTANPrice() {
     const regex = /floorPrice":(\d+(\.\d+)?)/;
     const match = subString.match(regex);
     
-    return match ? match[1] || 0 : 0;
+    return match ? parseInt(match[1]) || 0 : 0;
   } catch (error) {
     return 0;
   }
