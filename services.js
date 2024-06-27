@@ -129,7 +129,7 @@ function serviceParseTANPrice() {
     const html = UrlFetchApp.fetch(url).getContentText();
     const floorPriceIndex = html.indexOf("floorPrice");
     const subString = html.substring(floorPriceIndex);
-    const regex = /floorPrice":(\d+),/;
+    const regex = /floorPrice":(\d+(\.\d+)?)/;
     const match = subString.match(regex);
     
     return match ? match[1] || 0 : 0;
