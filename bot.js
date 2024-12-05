@@ -1,4 +1,8 @@
 function sendStonksChartCommand() {
+  if (!dashboardTab) return;
+  if (!logbookTab) return;
+  if (!currencyTab) return;
+
   let charts = dashboardTab.getCharts();
   let spentUSD = Math.round(logbookTab.getRange("B2").getValue());
   let balanceUSD = Math.round(logbookTab.getRange("C2").getValue());
