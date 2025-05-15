@@ -35,15 +35,13 @@ function autofill(daily = false) {
     .getValues()[0]
     .filter((value) => value !== "");
 
-  // console.log(jettonsInPortfolio);
   const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio);
-  // console.log(newColumnIdx);
-  // newColumnIdx.forEach((c) => {
-  //   console.log(+c);
-  //   currencyTab.insertColumnBefore(+c);
-  //   historyTab.insertColumnBefore(+c);
-  //   usdHistoryTab.insertColumnBefore(+c);
-  // });
+  
+  newColumnIdx.forEach((c) => {
+    currencyTab.insertColumnBefore(+c);
+    historyTab.insertColumnBefore(+c);
+    usdHistoryTab.insertColumnBefore(+c);
+  });
 
   fillCurrencyTab(maxLetter, symbols, prices, daily);
   fillHistoryTab(maxLetter, balances, historyHeaderFormulas, daily);
