@@ -39,10 +39,10 @@ function autofill(daily = false) {
   const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio);
   console.log(newColumnIdx);
   newColumnIdx.forEach((c) => {
-    console.log(c);
-    currencyTab.insertColumnBefore(c);
-    historyTab.insertColumnBefore(c);
-    usdHistoryTab.insertColumnBefore(c);
+    console.log(+c);
+    currencyTab.insertColumnBefore(+c);
+    historyTab.insertColumnBefore(+c);
+    usdHistoryTab.insertColumnBefore(+c);
   });
 
   fillCurrencyTab(maxLetter, symbols, prices, daily);
