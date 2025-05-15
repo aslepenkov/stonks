@@ -14,7 +14,7 @@ function autofill(daily = false) {
     symbols.push(jb.symbol);
     balances.push(jb.balance);
     prices.push(jb.price);
-    
+
     //generate common formulas
     index += startIndex;
     let column = gcl(index);
@@ -36,15 +36,12 @@ function autofill(daily = false) {
     .filter((value) => value !== "");
 
   const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio);
-
+  console.log(newColumnsIndexes);
   newColumnIdx.forEach((c) => {
-
-    if (c > 1) 
-    {
-      currencyTab.insertColumnBefore(c);
-      historyTab.insertColumnBefore(c);
-      usdHistoryTab.insertColumnBefore(c);
-    }
+    console.log(c);
+    currencyTab.insertColumnBefore(c);
+    historyTab.insertColumnBefore(c);
+    usdHistoryTab.insertColumnBefore(c);
   });
 
   fillCurrencyTab(maxLetter, symbols, prices, daily);
