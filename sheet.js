@@ -36,7 +36,7 @@ function autofill(daily = false) {
     .filter((value) => value !== "");
 
   const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio);
-  console.log(newColumnsIndexes);
+  console.log(newColumnIdx);
   newColumnIdx.forEach((c) => {
     console.log(c);
     currencyTab.insertColumnBefore(c);
