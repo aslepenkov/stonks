@@ -98,9 +98,20 @@ function serviceFetchETHPrice() {
   }
 }
 
-function serviceFetchDogePrice() {
+function serviceFetchSOLPrice() {
   try {
-    const response = UrlFetchApp.fetch("https://cryptoprices.cc/DOGE/");
+    const response = UrlFetchApp.fetch("https://cryptoprices.cc/SOL/");
+    const usdPrice = response;
+
+    return parseFloat(usdPrice).toFixed(3);
+  } catch {
+    return 0;
+  }
+}
+
+function serviceFetchWLDPrice() {
+  try {
+    const response = UrlFetchApp.fetch("https://cryptoprices.cc/WLD/");
     const usdPrice = response;
 
     return parseFloat(usdPrice).toFixed(3);

@@ -11,7 +11,7 @@ var TON_ACCOUNT_ID =
 
 var MSG_THREAD = 9
 
-var startIndex = 7;
+var startIndex = 10;
 
 var currencyTabName = "AUTOCURRENCY";
 var historyTabName = "AUTOHISTORY";

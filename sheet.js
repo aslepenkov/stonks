@@ -37,7 +37,6 @@ function autofill(daily = false) {
 
   const newColumnIdx = newColumnsIndexes(symbols, jettonsInPortfolio);
   newColumnIdx.forEach((c) => {
-    console.log(currencyTab)
     currencyTab.insertColumnBefore(+c);
     historyTab.insertColumnBefore(+c);
     usdHistoryTab.insertColumnBefore(+c);
@@ -67,6 +66,9 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
   let btcPrice = serviceFetchBTCPrice();
   let ethPrice = serviceFetchETHPrice();
   let tanPrice = serviceParseTANPrice();
+  let wldPrice = serviceFetchWLDPrice();
+  let solPrice = serviceFetchSOLPrice();
+  let usdtPrice = 1;
 
   if (daily) {
     currencyTab.insertRowAfter(1);
@@ -80,7 +82,7 @@ function fillCurrencyTab(maxLetter, symbols, prices, daily) {
   }
 
   //fixed + jettons. jettons count is variable
-  let arr = [tanPrice, btcPrice, ethPrice, tonPrice, ...prices];
+  let arr = [tanPrice, btcPrice, ethPrice, tonPrice, solPrice, wldPrice, usdtPrice, ...prices];
   currencyTab.getRange(`C2:${maxLetter}2`).setValues([arr]);
 }
 
@@ -124,6 +126,7 @@ function fillUSDHistoryTab(
         `=${historyTabName}!D2*${currencyTabName}!D2`, //BTC
         `=${historyTabName}!E2*${currencyTabName}!E2`, //ETH
         `=${historyTabName}!F2*${currencyTabName}!F2`, //TON
+        `=${historyTabName}!G2*${currencyTabName}!G2`, //USDT
       ],
     ]);
   }
